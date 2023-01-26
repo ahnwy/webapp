@@ -1,5 +1,4 @@
-package service;
-
+package exam.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class HttpServer {
             while (true) {
                 try {
                     Socket request = server.accept();
-                    Runnable r = new service.RequestProcessor(rootDirectory, INDEX_FILE, request);
+                    Runnable r = new RequestProcessor(rootDirectory, INDEX_FILE, request);
                     pool.submit(r);
                 } catch (IOException ex) {
                     logger.log(Level.WARNING, "Error accepting connection", ex);

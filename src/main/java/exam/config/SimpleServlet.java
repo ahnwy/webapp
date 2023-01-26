@@ -1,4 +1,4 @@
-package config;
+package exam.config;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SimpleServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest reqest, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
         response.getWriter().println("Hello World!!!!!");
     }
 
