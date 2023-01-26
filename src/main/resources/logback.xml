@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/>
-    <property name="LOG_PATH" value="log"/>  <!-- 파일 경로 -->
-    <property name="LOG_FILE_NAME" value="log"/>  <!-- 로그 파일명 -->
-    <property name="ERR_LOG_FILE_NAME" value="error"/>   <!-- 에러 로그 파일명 -->
-    <property name="LOG_PATTERN" value="%d{yy-MM-dd HH:mm:ss} %-5level [%thread] [%logger{0}:%line] - %msg%n"/> <!-- 로그 패턴 -->
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-3level %logger{5} - %msg %n</pattern>
@@ -14,23 +8,23 @@
 
     <!-- Console 설정 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${LOG_PATTERN}</pattern>
+        <encoder>
+            <pattern>%d{yy-MM-dd HH:mm:ss} %-5level [%thread] [%logger{0}:%line] - %msg%n</pattern>
         </encoder>
     </appender>
 
     <!-- File 설정 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 파일경로 설정 -->
-        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+        <file>log/log.log</file>
         <!-- 출력패턴 설정-->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${LOG_PATTERN}</pattern>
+            <pattern>%d{yy-MM-dd HH:mm:ss} %-5level [%thread] [%logger{0}:%line] - %msg%n</pattern>
         </encoder>
         <!-- Rolling 정책 -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.zip</fileNamePattern>
+            <fileNamePattern>log/log.%d{yyyy-MM-dd}_%i.zip</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>30MB</maxFileSize> <!-- 파일당 최고 용량 kb, mb, gb -->
